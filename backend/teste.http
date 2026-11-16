@@ -1,0 +1,57 @@
+#### teste cadastro
+POST http://localhost:3000/funcionario
+Content-Type: application/json
+
+{
+    "nome": "heloisa",
+    "email": "teste@gmail",
+    "senha": "123"
+}
+
+#### teste login
+# @name loginReq
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "email": "teste@gmail",
+    "senha": "123"
+}
+
+#### teste cadastro
+POST http://localhost:3000/condominio
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "nome": "pedro",
+    "cnpj": "783408"
+}
+
+#### teste cadastro
+POST http://localhost:3000/materiais
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+{
+    "idCondominio": 1,
+    "desc": "limpar",
+    "categoria": "limpeza",
+    "qtdeEstoque": 1.0,
+    "codLote": "123"
+}
+
+#############
+GET http://localhost:3000/condominios
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+#############
+GET http://localhost:3000/condominio/buscar/chateau
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
+
+#############
+DELETE  http://localhost:3000/condominio/2
+Content-Type: application/json
+Authorization: {{loginReq.response.body.token}}
